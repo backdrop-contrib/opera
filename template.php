@@ -91,3 +91,24 @@ function opera_preprocess_header(&$variables) {
     $variables['logo_wrapper_classes'] = $logo_wrapper_classes;
   }
 }
+
+function opera_autoload_info() {
+  return array(
+    'OperaBlockStyle' => 'includes/styles/opera.blockstyles.inc',
+  );
+}
+
+dpm('this thing is working');
+
+function opera_layout_style_info() {
+  $info['opera'] = array(
+    'title' => t('Opera'),
+    'description' => t('Which opera block color scheme would you like.'),
+    'block theme' => 'block_opera',
+    'class' => 'OperaBlockStyle',
+    'template' => 'templates/block-opera',
+    'file' => 'opera.theme.inc',
+  );
+  return $info;
+}
+ 
