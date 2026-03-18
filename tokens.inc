@@ -13,6 +13,22 @@ $info = array(
   // this file from the page when active, since it injects the values itself.
   'variables_file' => 'css/opera-variables.css',
 
+  // Sections group related token groups under a labeled divider on the admin page.
+  'sections' => array(
+    array(
+      'label'  => 'Site Colors',
+      'groups' => array('header', 'header_bar', 'secondary', 'buttons', 'links', 'cards'),
+    ),
+    array(
+      'label'  => 'Typography',
+      'groups' => array('typography'),
+    ),
+    array(
+      'label'  => 'Front Page',
+      'groups' => array('hero', 'block_1', 'block_2', 'block_3', 'block_4', 'block_5', 'block_6', 'block_7', 'block_8', 'block_9'),
+    ),
+  ),
+
   // Sub-modules that extend Design Tokens for this theme. The Design Tokens
   // admin page displays these with their enabled/disabled status.
   'submodules' => array(
@@ -34,13 +50,13 @@ $info = array(
   ),
 
   'groups' => array(
-    'header_bar' => array(
-      'label' => t('Header / Logo Bar'),
-      'description' => t('Colors for the top bar containing your logo and site name. This sits above the navigation bar and is typically light or white.'),
-    ),
     'header' => array(
       'label' => t('Navigation & Footer (Primary Colors)'),
       'description' => t('The <strong>Background</strong> color here is the site\'s primary brand color. It controls the navigation bar and footer background, but also drives buttons, links, borders, blockquotes, and UI accents across the entire site. Choose it as your main brand color.'),
+    ),
+    'header_bar' => array(
+      'label' => t('Header / Logo Bar'),
+      'description' => t('Colors for the top bar containing your logo and site name. This sits above the navigation bar and is typically light or white.'),
     ),
     'secondary' => array(
       'label' => t('Secondary / Accent Color'),
@@ -54,6 +70,10 @@ $info = array(
       'label' => t('Links & Text Colors'),
       'description' => t('Controls link colors and underline behavior for body content, plus the default and inverted text colors used automatically on colored blocks based on background brightness.'),
     ),
+    'cards' => array(
+      'label' => t('Cards & Teasers'),
+      'description' => t('Background color and corner radius for content cards, post teasers, and similar framed content.'),
+    ),
     'typography' => array(
       'label' => t('Typography'),
       'description' => t('Fonts used for headings and body text across the site.'),
@@ -61,10 +81,6 @@ $info = array(
     'hero' => array(
       'label' => t('Hero Blocks'),
       'description' => t('Colors for hero blocks that do not have a custom background image. These appear as a colored banner at the top of the page.'),
-    ),
-    'cards' => array(
-      'label' => t('Cards & Teasers'),
-      'description' => t('Background color and corner radius for content cards, post teasers, and similar framed content.'),
     ),
     'block_1' => array(
       'label' => t('Block 1'),
@@ -237,7 +253,7 @@ $info = array(
     'color-hero-text' => array(
       'label'   => t('Hero text'),
       'type'    => 'color',
-      'default' => '#002000',
+      'default' => '#ffffff',
       'group'   => 'hero',
     ),
     'color-hero-link' => array(
