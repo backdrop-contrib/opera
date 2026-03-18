@@ -13,6 +13,26 @@ $info = array(
   // this file from the page when active, since it injects the values itself.
   'variables_file' => 'css/opera-variables.css',
 
+  // Sub-modules that extend Design Tokens for this theme. The Design Tokens
+  // admin page displays these with their enabled/disabled status.
+  'submodules' => array(
+    array(
+      'name'        => 'Design Tokens: Color',
+      'machine'     => 'design_tokens_color',
+      'description' => 'Adds color pickers for all Opera color tokens and enables color scheme presets.',
+    ),
+    array(
+      'name'        => 'Design Tokens: Fonts',
+      'machine'     => 'design_tokens_font',
+      'description' => 'Adds font selectors for heading and body text, including Google Fonts support.',
+    ),
+    array(
+      'name'        => 'Design Tokens: Utility',
+      'machine'     => 'design_tokens_utility',
+      'description' => 'Generates CSS utility classes from token definitions, letting site architects style individual blocks by adding a class in the layout editor.',
+    ),
+  ),
+
   'groups' => array(
     'header_bar' => array(
       'label' => t('Header / Logo Bar'),
@@ -47,16 +67,17 @@ $info = array(
       'description' => t('Background color and corner radius for content cards, post teasers, and similar framed content.'),
     ),
     'block_1' => array(
-      'label' => t('Block Color Set 1'),
-      'description' => t('On the front page, blocks in the content region cycle through these color sets. The first and last blocks are always white. Middle blocks rotate through the numbered sets (1 &rarr; 2 &rarr; 3 &rarr; 1 &rarr; 2 &rarr; 3&hellip;). You can change the number of sets being used in the <a href="!settings_url">theme settings</a>.', array('!settings_url' => url('admin/appearance/settings/opera'))),
+      'label' => t('Block 1'),
+      'description' => t('Each front page block has its own color slot. Block 1 defaults to white. You can change how many blocks appear in the <a href="!settings_url">theme settings</a>.', array('!settings_url' => url('admin/appearance/settings/opera'))),
     ),
-    'block_2' => t('Block Color Set 2'),
-    'block_3' => t('Block Color Set 3'),
-    'block_4' => t('Block Color Set 4'),
-    'block_5' => t('Block Color Set 5'),
-    'block_6' => t('Block Color Set 6'),
-    'block_7' => t('Block Color Set 7'),
-    'block_8' => t('Block Color Set 8'),
+    'block_2' => t('Block 2'),
+    'block_3' => t('Block 3'),
+    'block_4' => t('Block 4'),
+    'block_5' => t('Block 5'),
+    'block_6' => t('Block 6'),
+    'block_7' => t('Block 7'),
+    'block_8' => t('Block 8'),
+    'block_9' => t('Block 9'),
   ),
 
   'tokens' => array(
@@ -241,75 +262,84 @@ $info = array(
       'group'   => 'cards',
     ),
 
-    // Block Color Set 1 (Soprano)
+    // Block 1 — white by default, configurable.
     'color-block-1' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#f2bb05',
+      'default'      => '#ffffff',
       'group'        => 'block_1',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
     ),
-    // Block Color Set 2 (Tenor)
+    // Block 2
     'color-block-2' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#124e78',
+      'default'      => '#f2bb05',
       'group'        => 'block_2',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
     ),
-    // Block Color Set 3
+    // Block 3
     'color-block-3' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#c24608',
+      'default'      => '#124e78',
       'group'        => 'block_3',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
     ),
-    // Block Color Set 4
+    // Block 4
     'color-block-4' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#4a9153',
+      'default'      => '#c24608',
       'group'        => 'block_4',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
     ),
-    // Block Color Set 5
+    // Block 5
     'color-block-5' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#7b2d8b',
+      'default'      => '#4a9153',
       'group'        => 'block_5',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
     ),
-    // Block Color Set 6
+    // Block 6
     'color-block-6' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#1a6b6b',
+      'default'      => '#7b2d8b',
       'group'        => 'block_6',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
     ),
-    // Block Color Set 7
+    // Block 7
     'color-block-7' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#8b6d14',
+      'default'      => '#1a6b6b',
       'group'        => 'block_7',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
     ),
-    // Block Color Set 8
+    // Block 8
     'color-block-8' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#5c1a1a',
+      'default'      => '#8b6d14',
       'group'        => 'block_8',
+      'utility'      => TRUE,
+      'contrast_with' => 'auto',
+    ),
+    // Block 9
+    'color-block-9' => array(
+      'label'        => t('Background'),
+      'type'         => 'color',
+      'default'      => '#5c1a1a',
+      'group'        => 'block_9',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
     ),
@@ -328,9 +358,9 @@ $info = array(
         'color-hero'         => '#f0f0c9',
         'color-hero-text'    => '#ffffff',
         'color-hero-link'    => '#b2bc22',
-        'color-block-1'      => '#f2bb05',
-        'color-block-2'      => '#124e78',
-        'color-block-3'      => '#c24608',
+        'color-block-2'      => '#f2bb05',
+        'color-block-3'      => '#124e78',
+        'color-block-4'      => '#c24608',
       ),
     ),
 
@@ -345,9 +375,9 @@ $info = array(
         'color-hero'         => '#e8f4f8',
         'color-hero-text'    => '#ffffff',
         'color-hero-link'    => '#1c6ea4',
-        'color-block-1'      => '#94d3c9',
-        'color-block-2'      => '#0b132b',
-        'color-block-3'      => '#3a506b',
+        'color-block-2'      => '#94d3c9',
+        'color-block-3'      => '#0b132b',
+        'color-block-4'      => '#3a506b',
       ),
     ),
 
@@ -362,9 +392,9 @@ $info = array(
         'color-hero'         => '#ffeaa7',
         'color-hero-text'    => '#ffffff',
         'color-hero-link'    => '#c0392b',
-        'color-block-1'      => '#f39c12',
-        'color-block-2'      => '#27ae60',
-        'color-block-3'      => '#2573a7',
+        'color-block-2'      => '#f39c12',
+        'color-block-3'      => '#27ae60',
+        'color-block-4'      => '#2573a7',
       ),
     ),
 
@@ -379,9 +409,9 @@ $info = array(
         'color-hero'         => '#16213e',
         'color-hero-text'    => '#c0c0c0',
         'color-hero-link'    => '#e94560',
-        'color-block-1'      => '#0f3460',
-        'color-block-2'      => '#533483',
-        'color-block-3'      => '#232020',
+        'color-block-2'      => '#0f3460',
+        'color-block-3'      => '#533483',
+        'color-block-4'      => '#232020',
       ),
     ),
   ),

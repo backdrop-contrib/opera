@@ -56,4 +56,4 @@ scripts[] = js/scripts.js
 utility_css[recipes][] = 'info-block'
 
 settings[use_google_fonts] = 1
-settings[block_color_sequence] = 3
+settings[front_page_block_count] = 3
