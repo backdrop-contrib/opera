@@ -1,8 +1,8 @@
 /*
  * Front page block color sequencing.
  *
- * The first and last blocks in the content region are always white.
- * Middle blocks cycle through a color sequence. The sequence length is
+ * The first block in the content region is always white.
+ * Subsequent blocks cycle through a color sequence. The sequence length is
  * controlled by the block_color_sequence theme setting, which adds a
  * block-sequence-N class to the layout element.
  *
@@ -15,6 +15,11 @@
  *
  * Supported sequence lengths: 2-8.
  */
+
+/* Remove the default l-content bottom padding so the last block butts up against the footer. */
+.layout--boxton.layout-front .l-content {
+  padding-bottom: 0;
+}
 
 /* First block: always white. */
 .layout--boxton.layout-front .l-content div.block:nth-of-type(1) {

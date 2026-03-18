@@ -34,8 +34,8 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
   }
 
   $front_page_description = $design_tokens_active
-    ? t('The first and last blocks are always white. Middle blocks cycle through the color sequence defined in <a href="!url">Design Tokens</a>.', array('!url' => url('admin/appearance/tokens/opera')))
-    : t('The first and last blocks are always white. Middle blocks cycle through the numbered color sets. Install the Design Tokens module to customize these colors.');
+    ? t('Applies to the front page when using the Boxton layout. The first block is always white. Subsequent blocks cycle through the color sequence defined in <a href="!url">Design Tokens</a>.', array('!url' => url('admin/appearance/tokens/opera')))
+    : t('Applies to the front page when using the Boxton layout. The first block is always white. Subsequent blocks cycle through the numbered color sets. Install the Design Tokens module to customize these colors.');
 
   $form['header'] = array(
     '#type'        => 'fieldset',
@@ -168,6 +168,12 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
   $has_project_browser = backdrop_valid_path('admin/modules/install');
 
   $modules = array(
+    array(
+      'name'        => 'Design Tokens',
+      'machine'     => 'design_tokens',
+      'project_url' => 'https://backdropcms.org/project/design_tokens',
+      'description' => t('Unlocks full control over Opera\'s colors, fonts, and preset schemes. Replaces Opera\'s default stylesheet with many configurable options. Recommended for any site where branding matters.'),
+    ),
     array(
       'name'        => 'Configurable Block Styles',
       'machine'     => 'configurable_block_style',
