@@ -53,34 +53,49 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     ),
     '#default_value' => theme_get_setting('logo_type', 'opera') ?: 'image',
   );
-  if (module_exists('icon_browser')) {
-    $icon_browse_link = t('<a href="@url" target="_blank">Browse all available icons</a>.', array(
-      '@url' => url('admin/config/media/icons/browse'),
-    ));
+  if (module_exists('icon_picker')) {
+    $logo_icon_element = array(
+      '#type'          => 'icon_picker',
+      '#title'         => t('Icon name'),
+      '#default_value' => theme_get_setting('logo_icon_name', 'opera') ?: '',
+      '#attributes'    => array('class' => array('opera-logo-icon-field')),
+      '#states'        => array(
+        'visible' => array(
+          ':input[name="logo_type"]' => array('value' => 'icon'),
+        ),
+      ),
+    );
   }
   else {
-    $icon_browse_link = t('Install the <a href="@url" target="_blank">Icon Browser</a> module to visually browse all available icons.', array(
-      '@url' => 'https://backdropcms.org/project/icon_browser',
-    ));
-  }
-
-  $form['header']['logo_icon_name'] = array(
-    '#type'          => 'textfield',
-    '#title'         => t('Icon name'),
-    '#default_value' => theme_get_setting('logo_icon_name', 'opera') ?: '',
-    '#description'   => t('Enter a Phosphor icon name such as %house, %star, or %buildings. !browse', array(
-      '%house'     => 'house',
-      '%star'      => 'star',
-      '%buildings' => 'buildings',
-      '!browse'    => $icon_browse_link,
-    )),
-    '#attributes'    => array('class' => array('opera-logo-icon-field')),
-    '#states'        => array(
-      'visible' => array(
-        ':input[name="logo_type"]' => array('value' => 'icon'),
+    if (module_exists('icon_browser')) {
+      $icon_browse_link = t('<a href="@url" target="_blank">Browse all available icons</a>.', array(
+        '@url' => url('admin/config/media/icons/browse'),
+      ));
+    }
+    else {
+      $icon_browse_link = t('Install the <a href="@url" target="_blank">Icon Browser</a> module to visually browse all available icons.', array(
+        '@url' => 'https://backdropcms.org/project/icon_browser',
+      ));
+    }
+    $logo_icon_element = array(
+      '#type'          => 'textfield',
+      '#title'         => t('Icon name'),
+      '#default_value' => theme_get_setting('logo_icon_name', 'opera') ?: '',
+      '#description'   => t('Enter a Phosphor icon name such as %house, %star, or %buildings. !browse', array(
+        '%house'     => 'house',
+        '%star'      => 'star',
+        '%buildings' => 'buildings',
+        '!browse'    => $icon_browse_link,
+      )),
+      '#attributes'    => array('class' => array('opera-logo-icon-field')),
+      '#states'        => array(
+        'visible' => array(
+          ':input[name="logo_type"]' => array('value' => 'icon'),
+        ),
       ),
-    ),
-  );
+    );
+  }
+  $form['header']['logo_icon_name'] = $logo_icon_element;
 
   $icon_name    = strtolower(trim(theme_get_setting('logo_icon_name', 'opera') ?: ''));
   $preview_html = $icon_name ? icon($icon_name, array('attributes' => array('width' => 48, 'height' => 48))) : '';
