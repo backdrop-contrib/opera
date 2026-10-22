@@ -489,10 +489,15 @@ abbr.tabledrag-changed {
 /**
  * Backdrop Form Styles
  */
-.form-item-radio label,
+/* Checkbox and radio labels sit inline beside the input. Core's
+ * system.theme.css does this with label.option, but Opera removes that file
+ * and base.css sets every label to display: block. */
+.form-type-radio label,
 .form-radios label,
-.form-item-checkbox label,
-.form-checkboxes label {
+.form-type-checkbox label,
+.form-checkboxes label,
+label.option {
+  display: inline;
   font-weight: 400;
 }
 
