@@ -1,0 +1,71 @@
+/**
+ * @file
+ * HTML5 details element styling.
+ *
+ * Matches collapsible fieldsets (see fieldset.css): a primary-colored top
+ * border, a tinted header bar holding the summary, and a triangle that turns
+ * when the element is opened. Logical properties (padding-inline-*,
+ * inset-inline-start) flip automatically for right-to-left languages.
+ */
+
+details {
+  margin: 1em 0;
+  border: 1px solid rgba(110, 14, 10, 0.15);
+  border-top: 3px solid var(--color-primary, #6e0e0a);
+}
+
+details > summary {
+  position: relative;
+  display: block; /* Removes the browser's marker; the triangle replaces it. */
+  padding-block: 0.5em;
+  padding-inline: 1.8em 0.78947em;
+  color: var(--color-primary, #6e0e0a);
+  text-transform: uppercase;
+  background-color: var(--color-card-bg, #f5f5f5);
+  cursor: pointer;
+}
+/* Safari still shows its marker on a block-level summary. */
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary:before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0.6em;
+  top: 0.95em;
+  border: .32em solid transparent;
+  border-top-color: var(--color-primary, #6e0e0a);
+  border-bottom: 0;
+  transform: translate(0, 0.125em) rotate(-90deg);
+  transition: transform 0.25s ease-out;
+}
+/* Closed, the triangle points toward the text. */
+[dir="rtl"] details > summary:before {
+  transform: translate(0, 0.125em) rotate(90deg);
+}
+details[open] > summary:before,
+[dir="rtl"] details[open] > summary:before {
+  transform: translate(0, 0.125em);
+}
+
+details > summary:hover,
+details > summary:focus-visible {
+  text-decoration: underline;
+}
+details > summary:focus:not(:focus-visible) {
+  outline: none;
+}
+
+details[open] > summary {
+  border-bottom: 1px solid rgba(110, 14, 10, 0.12);
+}
+
+details .details-content-wrapper,
+details .details-child-wrapper {
+  padding-block: 0.75em 13px;
+  padding-inline: 15px 13px;
+}
+details .details-content-wrapper + .details-child-wrapper {
+  padding-top: 0;
+}
