@@ -48,7 +48,7 @@
 
 .view-services .views-field-body {
   font-size: 0.9rem;
-  text-align: left;
+  text-align: start;
 }
 
 @media (max-width: 48em) {
@@ -96,7 +96,7 @@
   font-style: italic;
   font-size: 0.95rem;
   margin-bottom: 0.75rem;
-  text-align: left;
+  text-align: start;
 }
 
 .view-testimonials .views-field-body::before {

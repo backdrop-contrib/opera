@@ -1,6 +1,6 @@
 .view-content caption {
     caption-side: top;
-    padding-left: 0;
+    padding-inline-start: 0;
 }
 
 .view-blog-post .views-field-name {
