@@ -57,7 +57,7 @@
 /* The standalone Permalink after .submitted — separate visually. */
 .comment footer .permalink {
   display: inline;
-  margin-left: 0.75rem;
+  margin-inline-start: 0.75rem;
   font-style: normal;
   font-size: 0.8rem;
   color: #999;
@@ -131,7 +131,7 @@
    ===================================================================== */
 
 .comments .indented {
-  padding-left: 1.5rem;
+  padding-inline-start: 1.5rem;
   margin-top: 0;
-  border-left: 2px solid #e8e8e8;
+  border-inline-start: 2px solid #e8e8e8;
 }
