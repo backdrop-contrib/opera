@@ -252,3 +252,14 @@ function opera_breadcrumb($variables) {
   }
   return $output;
 }
+
+/**
+ * Overrides theme_table().
+ *
+ * Wraps every table in a box that scrolls sideways, so a table wider than
+ * its column (for example a main column next to a sidebar) scrolls inside
+ * that column instead of spilling over the sidebar.
+ */
+function opera_table($variables) {
+  return '<div class="table-scroll">' . theme_table($variables) . '</div>';
+}
