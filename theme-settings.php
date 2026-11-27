@@ -21,15 +21,11 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     );
   }
   else {
-    // @todo Once Design Tokens is published on BackdropCMS.org, replace the
-    // plain "Design Tokens" text in the message below with a link to its
-    // project page (e.g. https://backdropcms.org/project/design_tokens).
-    // In the meantime it links to the Opera theme page so the placeholder is
-    // obvious and easy to find when the module is live.
-    $design_tokens_url = 'https://backdropcms.org/project/opera';
+    $themes = list_themes();
+    $theme_name = isset($themes[$theme_key]->info['name']) ? $themes[$theme_key]->info['name'] : 'Opera';
     $form['design_tokens_notice'] = array(
       '#type' => 'markup',
-      '#markup' => '<div class="messages info"><p>' . t('Opera works great out of the box with its built-in color scheme and typography. To unlock full control — custom colors, fonts, and preset schemes — install the <a href="!url" target="_blank" rel="noopener"><strong>Design Tokens</strong></a> module. It replaces Opera\'s default styles with many configurable options (color, font, and others).', array('!url' => $design_tokens_url)) . '</p></div>',
+      '#markup' => '<div class="messages info"><p>' . t('@theme works great out of the box with its built-in color scheme and typography. To unlock full control — custom colors, fonts, and preset schemes — install the <a href="!url" target="_blank" rel="noopener"><strong>Design Tokens</strong></a> module. It replaces @theme\'s default styles with many configurable options (color, font, and others).', array('@theme' => $theme_name, '!url' => 'https://backdropcms.org/project/design_tokens')) . '</p></div>',
     );
   }
 
