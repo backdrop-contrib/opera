@@ -12,6 +12,9 @@
  * link color adjusts itself.
  */
 function opera_css_alter(&$css) {
+  // The active theme: Opera, or a subtheme of Opera with its own settings and
+  // token values.
+  global $theme;
   $properties = array();
 
   // Logo height variable — always injected so it works without Design Tokens.
@@ -21,13 +24,13 @@ function opera_css_alter(&$css) {
     'large'  => '96px',
     'xlarge' => '128px',
   );
-  $logo_size   = theme_get_setting('logo_size', 'opera') ?: 'medium';
+  $logo_size   = theme_get_setting('logo_size', $theme) ?: 'medium';
   $logo_height = isset($size_map[$logo_size]) ? $size_map[$logo_size] : '72px';
   $properties[] = '  --logo-max-height: ' . $logo_height . ';';
 
   // Block link colors — only when Design Tokens is active.
   if (function_exists('design_tokens_get_values')) {
-    $values = design_tokens_get_values('opera');
+    $values = design_tokens_get_values($theme);
 
     for ($i = 1; $i <= 9; $i++) {
       $bg_token = 'color-block-' . $i;
@@ -58,6 +61,23 @@ function opera_css_alter(&$css) {
     'preprocess' => FALSE,
     'browsers'   => array('IE' => TRUE, '!IE' => TRUE),
   );
+}
+
+/**
+ * Returns TRUE if a theme is Opera or a subtheme of Opera.
+ *
+ * @param string $theme_name
+ *   The machine name of a theme.
+ *
+ * @return bool
+ *   TRUE if the theme is Opera or has Opera as a base theme.
+ */
+function _opera_is_opera_theme($theme_name) {
+  if ($theme_name === 'opera') {
+    return TRUE;
+  }
+  $themes = list_themes();
+  return isset($themes[$theme_name]->base_themes) && array_key_exists('opera', $themes[$theme_name]->base_themes);
 }
 
 /**
@@ -108,22 +128,23 @@ function _opera_color_is_dark($hex) {
  * $logo_icon_size for the icon branch of the template.
  */
 function opera_preprocess_header(&$variables) {
+  global $theme;
   $size_map = array(
     'small'  => 48,
     'medium' => 72,
     'large'  => 96,
     'xlarge' => 128,
   );
-  $logo_size             = theme_get_setting('logo_size', 'opera') ?: 'medium';
+  $logo_size             = theme_get_setting('logo_size', $theme) ?: 'medium';
   $variables['logo_icon_size'] = isset($size_map[$logo_size]) ? $size_map[$logo_size] : 72;
   $variables['logo_icon']      = '';
 
-  $logo_type = theme_get_setting('logo_type', 'opera') ?: 'image';
+  $logo_type = theme_get_setting('logo_type', $theme) ?: 'image';
   if ($logo_type !== 'icon') {
     return;
   }
 
-  $icon_name = strtolower(trim(theme_get_setting('logo_icon_name', 'opera') ?: ''));
+  $icon_name = strtolower(trim(theme_get_setting('logo_icon_name', $theme) ?: ''));
   if (empty($icon_name)) {
     return;
   }
@@ -160,11 +181,11 @@ function opera_preprocess_layout(&$variables) {
  * correspond to their actual block count.
  */
 function opera_design_tokens_info_alter(array &$info, $theme_name) {
-  if ($theme_name !== 'opera') {
+  if (!_opera_is_opera_theme($theme_name)) {
     return;
   }
 
-  $count = (int) theme_get_setting('front_page_block_count', 'opera');
+  $count = (int) theme_get_setting('front_page_block_count', $theme_name);
   if ($count < 1 || $count > 9) {
     $count = 3;
   }

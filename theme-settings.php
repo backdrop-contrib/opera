@@ -12,12 +12,16 @@
  */
 function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL) {
 
+  // The theme being configured: Opera, or a subtheme of Opera, which keeps its
+  // own settings and Design Tokens page.
+  $theme_key = isset($form_state['build_info']['args'][0]) ? $form_state['build_info']['args'][0] : 'opera';
+
   $design_tokens_active = module_exists('design_tokens');
 
   if ($design_tokens_active) {
     $form['colors'] = array(
       '#type' => 'markup',
-      '#markup' => '<p>' . t('Configure colors and fonts for this theme on the <a href="!url">Design Tokens</a> page.', array('!url' => url('admin/appearance/tokens/opera'))) . '</p>',
+      '#markup' => '<p>' . t('Configure colors and fonts for this theme on the <a href="!url">Design Tokens</a> page.', array('!url' => url('admin/appearance/tokens/' . $theme_key))) . '</p>',
     );
   }
   else {
@@ -49,7 +53,7 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     }
   }
 
-  $declared_block_count = (int) (theme_get_setting('front_page_block_count', 'opera') ?: 3);
+  $declared_block_count = (int) (theme_get_setting('front_page_block_count', $theme_key) ?: 3);
 
   $front_page_description = t('Applies to the front page when using the Boxton layout. Block 1 is white by default but can be changed via Design Tokens.');
 
@@ -67,13 +71,13 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
       'image' => t('Image — upload via Administration > Configuration > System > Site information'),
       'icon'  => t('Phosphor icon'),
     ),
-    '#default_value' => theme_get_setting('logo_type', 'opera') ?: 'image',
+    '#default_value' => theme_get_setting('logo_type', $theme_key) ?: 'image',
   );
   if (module_exists('icon_picker')) {
     $logo_icon_element = array(
       '#type'          => 'icon_picker',
       '#title'         => t('Icon name'),
-      '#default_value' => theme_get_setting('logo_icon_name', 'opera') ?: '',
+      '#default_value' => theme_get_setting('logo_icon_name', $theme_key) ?: '',
       '#attributes'    => array('class' => array('opera-logo-icon-field')),
       '#states'        => array(
         'visible' => array(
@@ -96,7 +100,7 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     $logo_icon_element = array(
       '#type'          => 'textfield',
       '#title'         => t('Icon name'),
-      '#default_value' => theme_get_setting('logo_icon_name', 'opera') ?: '',
+      '#default_value' => theme_get_setting('logo_icon_name', $theme_key) ?: '',
       '#description'   => t('Enter a Phosphor icon name such as %house, %star, or %buildings. !browse', array(
         '%house'     => 'house',
         '%star'      => 'star',
@@ -113,7 +117,7 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
   }
   $form['header']['logo_icon_name'] = $logo_icon_element;
 
-  $icon_name    = strtolower(trim(theme_get_setting('logo_icon_name', 'opera') ?: ''));
+  $icon_name    = strtolower(trim(theme_get_setting('logo_icon_name', $theme_key) ?: ''));
   $preview_html = $icon_name ? icon($icon_name, array('attributes' => array('width' => 48, 'height' => 48))) : '';
   $form['header']['icon_preview'] = array(
     '#type'       => 'container',
@@ -141,7 +145,7 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
       'large'  => t('Large (96px)'),
       'xlarge' => t('X-Large (128px)'),
     ),
-    '#default_value' => theme_get_setting('logo_size', 'opera') ?: 'medium',
+    '#default_value' => theme_get_setting('logo_size', $theme_key) ?: 'medium',
     '#description'   => t('Maximum height of the logo image in the header bar. Choose a larger size for logos with fine detail or complex wordmarks, smaller for simple icon-style marks.'),
   );
 
