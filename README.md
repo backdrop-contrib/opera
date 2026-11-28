@@ -71,11 +71,13 @@ manage all visual configuration. From a single admin page you can change:
 - **Links** — color, hover color, visited color, and underline behavior
 - **Typography** — heading and body font families, with Google Fonts support built in
 - **Hero Blocks** — colors for hero blocks without a custom image
-- **Cards & Teasers** — card background color and corner radius
+- **Cards & Teasers** — card background color (automatic: a tint of the primary color until you choose one), card text color and corner radius
 - **Block Color Sets** — up to 8 background colors for cycling front-page blocks. Text and
   link colors are calculated automatically based on whether the background is light or dark.
 
 Changes are reflected in a live preview alongside the form — no page reload required.
+
+All of Opera's default values are written once, in `css/opera-variables.css`. Without Design Tokens the browser uses that file directly; with it, Design Tokens reads its defaults from the same file. `tokens.inc` only describes the tokens (labels, types, groups and schemes).
 
 ### Preset color schemes
 Opera ships with four preset color schemes: **Opera** (deep red and gold), **Plume**
@@ -97,6 +99,8 @@ The [Design Tokens](https://backdropcms.org/project/design_tokens) module and it
 `design_tokens_color` and `design_tokens_font` sub-modules are strongly recommended. Opera
 works without them using its built-in default styles, but full color and font customization
 requires Design Tokens.
+
+This version of Opera keeps its default values only in `css/opera-variables.css`, so it needs a Design Tokens release that reads defaults from the theme's variables file (newer than 1.x-1.0.0-beta001). Update both together.
 
 ## Setup
 
@@ -185,7 +189,8 @@ Opera will then apply the pill badge styles to that view's output automatically.
 Opera is suitable as a base for a sub-theme. A sub-theme can:
 
 - Override any template in `templates/`
-- Add its own `tokens.inc` to extend or replace Opera's Design Token definitions
+- Change Opera's default token values with its own variables file listing only the values it changes (see Bats for an example), and add tokens, groups or schemes through `hook_design_tokens_info_alter()`
+- Add its own `tokens.inc` to replace Opera's Design Token definitions completely
 - Override CSS in component files under `css/component/`
 
 ## Contributing
