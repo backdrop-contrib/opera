@@ -11,6 +11,7 @@
   --font-body:    'Lato', 'Helvetica Neue', Arial, sans-serif;
 
   --color-card-bg:      color-mix(in srgb, var(--color-primary) 5%, white);
+  --color-card-text:    #1a1a1a;
   --card-border-radius: 0.25rem;
 
   --color-header-bg:    #ffffff;
