@@ -61,6 +61,7 @@ Anything a regular visitor interacts with should pull from Design Tokens:
 - `--button-bg`, `--button-text`, `--button-bg-hover`, `--button-border-radius`
 - `--color-primary`, `--color-primary-text`
 - `--color-card-bg`, `--color-surface-mid` (surface tints derived from primary)
+- `--color-card-text` (text on cards; cards keep it inside colored front page blocks, whose own text color is chosen for the block's background)
 
 ### Never use tokens for admin-only UI
 Admin controls use hardcoded values for active/default states. This is intentional —

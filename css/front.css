@@ -137,3 +137,26 @@
 .layout--boxton.layout-front .l-content div.block:nth-of-type(9) a:focus {
   color: var(--color-block-9-link, var(--link-color-inverted, #f0e6b8));
 }
+
+/* =====================================================================
+   Cards inside a front page block keep their own text and link colors.
+   The block's text and link colors are chosen for the block's background,
+   not the card's, so they would be unreadable on a card of the opposite
+   lightness. These rules match the block rules' specificity and come
+   after them.
+   ===================================================================== */
+
+.layout--boxton.layout-front .l-content div.block .view-mode-teaser {
+  color: var(--color-card-text, #1a1a1a);
+}
+.layout--boxton.layout-front .l-content div.block .view-mode-teaser a,
+.layout--boxton.layout-front .l-content div.block .view-mode-teaser a:link {
+  color: var(--link-color, #6e0e0a);
+}
+.layout--boxton.layout-front .l-content div.block .view-mode-teaser a:visited {
+  color: var(--link-color-visited, #551a8b);
+}
+.layout--boxton.layout-front .l-content div.block .view-mode-teaser a:hover,
+.layout--boxton.layout-front .l-content div.block .view-mode-teaser a:focus {
+  color: var(--link-color-hover, #580b08);
+}

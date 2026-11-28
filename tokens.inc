@@ -72,7 +72,7 @@ $info = array(
     ),
     'cards' => array(
       'label' => t('Cards & Teasers'),
-      'description' => t('Background color and corner radius for content cards, post teasers, and similar framed content.'),
+      'description' => t('Background color, text color and corner radius for content cards, post teasers, and similar framed content.'),
     ),
     'typography' => array(
       'label' => t('Typography'),
@@ -269,7 +269,15 @@ $info = array(
       'type'         => 'color',
       'default'      => '#f8f3f3',
       'group'        => 'cards',
-      'contrast_with' => 'auto',
+    ),
+    // Cards keep their own text color wherever they appear, including inside
+    // a colored front page block. Design Tokens checks its contrast against
+    // color-card-bg.
+    'color-card-text' => array(
+      'label'   => t('Card text'),
+      'type'    => 'color',
+      'default' => '#1a1a1a',
+      'group'   => 'cards',
     ),
     'card-border-radius' => array(
       'label'   => t('Corner radius'),
