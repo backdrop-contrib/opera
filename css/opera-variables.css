@@ -1,14 +1,34 @@
 /*
  * Default CSS custom property values for Opera.
  *
- * These values are used as fallbacks when the Theme Tokens module is not
- * enabled. When Theme Tokens is active, it injects a :root {} block that
+ * This file is the one place Opera's token defaults are written. Without the
+ * Design Tokens module, the browser uses these values directly. With it, the
+ * module reads its defaults from this file, removes the file from the page and
+ * injects a :root {} block with the configured values.
+ */
+
+:root {} block that
  * overrides these values with whatever the admin has configured.
  */
 
 :root {
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body:    'Lato', 'Helvetica Neue', Arial, sans-serif;
+
+  --button-bg:             #6e0e0a;
+  --button-text:           #ffffff;
+  --button-bg-hover:       #580b08;
+  --button-border-radius:  0.25rem;
+  --button-text-transform: uppercase;
+
+  --link-color:                 #6e0e0a;
+  --link-color-hover:           #580b08;
+  --link-color-visited:         #551a8b;
+  --link-text-decoration:       none;
+  --link-text-decoration-hover: underline;
+  --link-color-inverted:        #f0e6b8;
+  --color-text-default:         #1a1a1a;
+  --color-text-inverted:        #ffffff;
 
   --color-card-bg:      color-mix(in srgb, var(--color-primary) 5%, white);
   --color-card-text:    #1a1a1a;

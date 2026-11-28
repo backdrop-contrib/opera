@@ -3,8 +3,8 @@
  * @file
  * Theme Tokens declaration for Opera.
  *
- * Defines the color tokens available for Opera, their default values,
- * groupings, and preset color schemes. Requires the Theme Tokens module.
+ * Defines the tokens available for Opera, their labels, groupings and preset
+ * color schemes. Default values come from css/opera-variables.css.
  */
 
 $info = array(
@@ -102,14 +102,12 @@ $info = array(
     'font-heading' => array(
       'label'   => t('Heading font'),
       'type'    => 'font',
-      'default' => "'Playfair Display', Georgia, serif",
       'group'   => 'typography',
       'utility' => TRUE,
     ),
     'font-body' => array(
       'label'   => t('Body font'),
       'type'    => 'font',
-      'default' => "'Lato', 'Helvetica Neue', Arial, sans-serif",
       'group'   => 'typography',
       'utility' => TRUE,
     ),
@@ -118,7 +116,6 @@ $info = array(
     'color-secondary' => array(
       'label'   => t('Accent color'),
       'type'    => 'color',
-      'default' => '#b2bc21',
       'group'   => 'secondary',
       'utility' => TRUE,
     ),
@@ -127,32 +124,27 @@ $info = array(
     'button-bg' => array(
       'label'   => t('Button background'),
       'type'    => 'color',
-      'default' => '#6e0e0a',
       'group'   => 'buttons',
       'utility' => TRUE,
     ),
     'button-text' => array(
       'label'   => t('Button text'),
       'type'    => 'color',
-      'default' => '#ffffff',
       'group'   => 'buttons',
     ),
     'button-bg-hover' => array(
       'label'   => t('Button background (hover)'),
       'type'    => 'color',
-      'default' => '#580b08',
       'group'   => 'buttons',
     ),
     'button-border-radius' => array(
       'label'   => t('Button corner radius'),
       'type'    => 'text',
-      'default' => '0.25rem',
       'group'   => 'buttons',
     ),
     'button-text-transform' => array(
       'label'   => t('Button text transform'),
       'type'    => 'text',
-      'default' => 'uppercase',
       'group'   => 'buttons',
     ),
 
@@ -160,49 +152,41 @@ $info = array(
     'link-color' => array(
       'label'   => t('Link color'),
       'type'    => 'color',
-      'default' => '#6e0e0a',
       'group'   => 'links',
     ),
     'link-color-hover' => array(
       'label'   => t('Link color (hover)'),
       'type'    => 'color',
-      'default' => '#580b08',
       'group'   => 'links',
     ),
     'link-color-visited' => array(
       'label'   => t('Link color (visited)'),
       'type'    => 'color',
-      'default' => '#551a8b',
       'group'   => 'links',
     ),
     'link-text-decoration' => array(
       'label'   => t('Link underline'),
       'type'    => 'text',
-      'default' => 'none',
       'group'   => 'links',
     ),
     'link-text-decoration-hover' => array(
       'label'   => t('Link underline (hover)'),
       'type'    => 'text',
-      'default' => 'underline',
       'group'   => 'links',
     ),
     'link-color-inverted' => array(
       'label'   => t('Link color (on dark backgrounds)'),
       'type'    => 'color',
-      'default' => '#f0e6b8',
       'group'   => 'links',
     ),
     'color-text-default' => array(
       'label'   => t('Block text (on light backgrounds)'),
       'type'    => 'color',
-      'default' => '#1a1a1a',
       'group'   => 'links',
     ),
     'color-text-inverted' => array(
       'label'   => t('Block text (on dark backgrounds)'),
       'type'    => 'color',
-      'default' => '#ffffff',
       'group'   => 'links',
     ),
 
@@ -210,13 +194,11 @@ $info = array(
     'color-header-bg' => array(
       'label'   => t('Background'),
       'type'    => 'color',
-      'default' => '#ffffff',
       'group'   => 'header_bar',
     ),
     'color-header-text' => array(
       'label'   => t('Text & links'),
       'type'    => 'color',
-      'default' => '#1a1a1a',
       'group'   => 'header_bar',
       'contrast_with' => 'color-header-bg',
     ),
@@ -225,20 +207,17 @@ $info = array(
     'color-primary' => array(
       'label'   => t('Background'),
       'type'    => 'color',
-      'default' => '#6e0e0a',
       'group'   => 'header',
       'utility' => TRUE,
     ),
     'color-primary-text' => array(
       'label'   => t('Text'),
       'type'    => 'color',
-      'default' => '#fff6ff',
       'group'   => 'header',
     ),
     'color-primary-link' => array(
       'label'   => t('Links'),
       'type'    => 'color',
-      'default' => '#b2bc21',
       'group'   => 'header',
     ),
 
@@ -246,28 +225,26 @@ $info = array(
     'color-hero' => array(
       'label'   => t('Hero background'),
       'type'    => 'color',
-      'default' => '#f0f0c9',
       'group'   => 'hero',
       'utility' => TRUE,
     ),
     'color-hero-text' => array(
       'label'   => t('Hero text'),
       'type'    => 'color',
-      'default' => '#ffffff',
       'group'   => 'hero',
     ),
     'color-hero-link' => array(
       'label'   => t('Hero links'),
       'type'    => 'color',
-      'default' => '#b2bc22',
       'group'   => 'hero',
     ),
 
     // Cards & Teasers
+    // Automatic by default: calculated from the primary color in
+    // opera-variables.css, until someone chooses a color.
     'color-card-bg' => array(
       'label'        => t('Card background'),
       'type'         => 'color',
-      'default'      => '#f8f3f3',
       'group'        => 'cards',
     ),
     // Cards keep their own text color wherever they appear, including inside
@@ -276,13 +253,11 @@ $info = array(
     'color-card-text' => array(
       'label'   => t('Card text'),
       'type'    => 'color',
-      'default' => '#1a1a1a',
       'group'   => 'cards',
     ),
     'card-border-radius' => array(
       'label'   => t('Corner radius'),
       'type'    => 'text',
-      'default' => '0.25rem',
       'group'   => 'cards',
     ),
 
@@ -290,7 +265,6 @@ $info = array(
     'color-block-1' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#ffffff',
       'group'        => 'block_1',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
@@ -299,7 +273,6 @@ $info = array(
     'color-block-2' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#f2bb05',
       'group'        => 'block_2',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
@@ -308,7 +281,6 @@ $info = array(
     'color-block-3' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#124e78',
       'group'        => 'block_3',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
@@ -317,7 +289,6 @@ $info = array(
     'color-block-4' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#c24608',
       'group'        => 'block_4',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
@@ -326,7 +297,6 @@ $info = array(
     'color-block-5' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#4a9153',
       'group'        => 'block_5',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
@@ -335,7 +305,6 @@ $info = array(
     'color-block-6' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#7b2d8b',
       'group'        => 'block_6',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
@@ -344,7 +313,6 @@ $info = array(
     'color-block-7' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#1a6b6b',
       'group'        => 'block_7',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
@@ -353,7 +321,6 @@ $info = array(
     'color-block-8' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#8b6d14',
       'group'        => 'block_8',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
@@ -362,7 +329,6 @@ $info = array(
     'color-block-9' => array(
       'label'        => t('Background'),
       'type'         => 'color',
-      'default'      => '#5c1a1a',
       'group'        => 'block_9',
       'utility'      => TRUE,
       'contrast_with' => 'auto',
@@ -374,18 +340,7 @@ $info = array(
     // Warm theatrical reds, gold, and navy — the signature Opera look.
     'default' => array(
       'title'  => t('Opera (default)'),
-      'tokens' => array(
-        'color-primary'      => '#6e0e0a',
-        'color-primary-text' => '#fff6ff',
-        'color-primary-link' => '#b2bc21',
-        'color-secondary'    => '#b2bc21',
-        'color-hero'         => '#f0f0c9',
-        'color-hero-text'    => '#ffffff',
-        'color-hero-link'    => '#b2bc22',
-        'color-block-2'      => '#f2bb05',
-        'color-block-3'      => '#124e78',
-        'color-block-4'      => '#c24608',
-      ),
+      // No 'tokens': this scheme uses the defaults from opera-variables.css.
     ),
 
     // Deep navy and teal — cool and sophisticated.
